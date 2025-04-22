@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEPCY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a1a, hsl(0, 0%, 12%));
+            overflow: hidden;
+        }
+        .scene {
+            width: 100px;
+            height: 100px;
+            perspective: 300px;
+        }
+        .hollow-cube {
+            position: relative;
+            width: 50%;
+            height: 50%;
+            transform-style: preserve-3d;
+            animation: rotateHollow 6s linear infinite;
+        }
+        .inner-cube {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg);
+            animation: rotateInner 3s linear infinite;
+        }
+        .face {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(4, 332, 665, 0.2);
+            border: 2px solid green;
+            box-shadow: 0 0 10px orange;
+        }
+        .hollow-cube .face {
+            width: 100px;
+            height: 100px;
+            border: 2px solid red;
+            box-shadow: 0 0 15px magenta;
+        }
+        .front  { transform: translateZ(100px); }
+        .back   { transform: rotateY(180deg) translateZ(100px); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .right  { transform: rotateY(90deg) translateZ(100px); }
+        .top    { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+        
+        @keyframes rotateHollow {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+        @keyframes rotateInner {
+            from { transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg); }
+            to { transform: translate(-50%, -50%) rotateX(405deg) rotateY(405deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="hollow-cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+            <div class="inner-cube">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face left"></div>
+                <div class="face right"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
